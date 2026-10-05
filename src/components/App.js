@@ -1,29 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "./../styles/App.css";
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const handleSubmit = () => {
-    document.getElementById('main').addEventListener('click',()=>{
-      document.getElementById('main').innerHTML = "<p>Your are logged in! </p>"
-    })
+    setIsLoggedIn(true);
   };
 
   return (
     <div id="main">
-      <label htmlFor="user-field">Username:</label>
-      <input id="user-field" type="text" name="username" />
-      
-      <br/><br/>
-      
-      <label htmlFor="pass-field">Password:</label>
+      {isLoggedIn ? (
+        <p>You are logged in!</p>
+      ) : (
+        <>
+          <label htmlFor="user-field">Username:</label>
+          <input id="user-field" type="text" />
 
-      <input id="pass-field" type="password" name="password" />
-      
-      <br/>
-      <button onClick={handleSubmit}>Submit</button> 
+          <br />
+          <br />
+
+          <label htmlFor="pass-field">Password:</label>
+          <input id="pass-field" type="password" />
+
+          <br />
+
+          <button onClick={handleSubmit}>Submit</button>
+        </>
+      )}
     </div>
   );
 };
-
 
 export default App;
